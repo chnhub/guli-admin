@@ -1,4 +1,4 @@
-import { login, logout, getInfoByLocal, loginByLocal } from '@/api/user'
+import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -32,7 +32,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      loginByLocal({ username: username.trim(), password: password }).then(response => {
+      login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -46,7 +46,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfoByLocal(state.token).then(response => {
+      getInfo(state.token).then(response => {
         const { data } = response
 
         if (!data) {
