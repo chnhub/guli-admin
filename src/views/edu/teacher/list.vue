@@ -71,7 +71,7 @@
           <router-link :to="'/teacher/edit/'+scope.row.id">
             <el-button type="primary" size="mini" icon="el-icon-edit">修改</el-button>
           </router-link>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.id)">删除</el-button>
+          <el-button type="danger" size="mini" icon="el-icon-delete" @click="removeDataById(scope.row.teacherCode)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -89,7 +89,7 @@
 
 // 引入teacher.js
 <script>
-import {getTeacherListPage} from '@/api/teacher'
+import {getTeacherListPage, deleteTeacher} from '@/api/teacher'
 export default {
     // 核心代码
     data(){ //定义变量和初始值
@@ -118,6 +118,7 @@ export default {
               console.log(error)//请求失败
           })
       },
+      //清除查询表单
       resetData(){
         //表单输入项数据清空
         this.teacherQO={
@@ -126,6 +127,19 @@ export default {
         }
         //查询所有讲师数据
         this.getList();
+      },
+      // 删除事件
+      removeDataById(id){
+        this.$confirm('此操作将永久删除讲师记录, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+        }).then(()=>{
+            deleteTeacher(id).then(response=>{
+              this.$message.success("删除成功");
+              this.getList();
+            })
+        }).catch(()=>{});
       },
     }
 }
