@@ -163,7 +163,7 @@ export const constantRoutes = [
   {
     path: '/teacher',
     component: Layout,
-    redirect: '/teacher/table',
+    redirect: '/teacher/list',
     name: '讲师管理',
     meta: { title: '讲师管理', icon: 'example' },
     children: [
@@ -178,9 +178,17 @@ export const constantRoutes = [
         name: '添加讲师',
         component: () => import('@/views/edu/teacher/save'),
         meta: { title: '添加讲师', icon: 'tree' }
-      }
+      },
+      {
+        path: 'edit/:id',
+        name: '修改讲师',
+        component: ()=> import('@/views/edu/teacher/save'),
+        meta: {title: '修改讲师', icon: 'table'},
+        hidden: true
+      },
     ]
   },
+
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

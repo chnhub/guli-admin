@@ -17,8 +17,12 @@ export function addTeacher(teacherDTO){
     });
 }
 
-export function editTeacher(){
-
+export function editTeacher(id, teacherDTO){
+    return request({
+        url: `/eduservice/teacher/edit/${id}`,
+        method: 'post',
+        data: teacherDTO
+    });
 }
 // 根据code删除教师
 export function deleteTeacher(teacherCode){
@@ -27,8 +31,19 @@ export function deleteTeacher(teacherCode){
         method: 'delete',
     });
 }
+// 根据code获取教师
+export function getTeacherByCode(teacherCode){
+    // return getTeacherListPage({"teacherCode":teacherCode});
+    return request({
+        url:`/eduservice/teacher/${teacherCode}`,
+        method: 'get',
+    });
+}
+
 
 export default{
     deleteTeacher,
-    addTeacher
+    addTeacher,
+    getTeacherByCode,
+    editTeacher
 }

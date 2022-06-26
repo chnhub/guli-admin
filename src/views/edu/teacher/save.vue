@@ -42,45 +42,72 @@
 
 
 <script>
-
-import teacherApi from '@/api/teacher'
+import teacherApi from "@/api/teacher";
+import router from '@/router';
 export default {
-  data(){
+  data() {
     return {
-       teacher:{
+      teacher: {
         name: null,
         sort: 0,
         level: 1,
-        career: '',
-        intro: '',
-        avatar: ''
-       },
-       saveBtnDisabled: false // 保存按钮是否禁用,
-    }
+        career: "",
+        intro: "",
+        avatar: "",
+      },
+      saveBtnDisabled: false, // 保存按钮是否禁用,
+    };
   },
-  created(){},
+  created() {
+    
+    if(this.$route.params && this.$route.params.id){
+      const id = this.$route.params.id;
+      this.getTeacherByCode(id).then((response)=>{
+        this.teacher = response.data;
+      });     
+    }
 
-methods:{
-     saveOrUpdate(){
-       //添加
-       this.saveTeacher()
-     },
-     //添加讲师的方法
-     saveTeacher(){
-       teacherApi.addTeacher(this.teacher)
-       .then((response) => {
-         //提示信息
+  },
+
+  methods: {
+    saveOrUpdate() {
+      
+      if(this.$route.params && this.$route.params.id){
+        this.editTeacher(this.$route.params.id);
+      }else{
+        //添加
+        this.saveTeacher();
+      };
+    },
+    //添加讲师的方法
+    saveTeacher() {
+      teacherApi
+        .addTeacher(this.teacher)
+        .then((response) => {
+          //提示信息
           this.$message({
-              type: 'success',
-              message: '添加成功!'
+            type: "success",
+            message: "添加成功!",
           });
 
           //回到列表页面 ，路由跳转
-          this.$router.push({path:'/teacher/list'})
-       }).catch((err) => {
-         
-       });
-     }
-}
-}
+          this.$router.push({ path: "/teacher/list" });
+        })
+        .catch((err) => {});
+    },
+    editTeacher(id){
+      teacherApi.editTeacher(id, this.teacher).then((response)=>{
+        if(response.code != 20000) return;
+        //提示信息
+          this.$message({
+            type: "success",
+            message: "保存成功!",
+          });
+      });
+    },
+    getTeacherByCode(teacherCode){
+      return teacherApi.getTeacherByCode(teacherCode);
+    }
+  },
+};
 </script>
