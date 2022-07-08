@@ -1,6 +1,8 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const proxyConfig = require('./proxy.config.js')
+
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -31,12 +33,24 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    // open: true,
     overlay: {
-      warnings: false,
+      warnings: true,
       errors: true
     },
-    before: require('./mock/mock-server.js')
+    before: require('./mock/mock-server.js'),
+    // ...proxyConfig,
+    proxy:{
+      "^/api": {
+        target: "http://172.20.10.2:8080/", //
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/api": "/api",
+        },
+      
+      },
+    },
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
