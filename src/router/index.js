@@ -209,6 +209,26 @@ export const constantRoutes = [
       },
     ]
   },
+  {
+    path: '/course',
+    component: Layout,
+    redirect: '/course/list',
+    name: '课程管理',
+    meta: {
+      title: '课程管理',
+      icon: 'example'
+    },
+    children: [{
+      path: 'list',
+      name: '课程列表',
+      component: ()=> import('@/views/course/list'),
+      meta:{
+        title: '课程列表',
+        icon: 'table'
+      }
+      }
+    ]
+  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
