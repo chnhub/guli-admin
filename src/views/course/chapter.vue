@@ -14,7 +14,7 @@
 
     <el-form label-width="120px">
       <el-form-item>
-        <el-button type="primary" @click="previous">上一步</el-button>
+        <el-button @click="previous">上一步</el-button>
 
         <el-button type="primary" @click="next">下一步</el-button>
       </el-form-item>

@@ -45,5 +45,6 @@ export default{
     deleteTeacher,
     addTeacher,
     getTeacherByCode,
-    editTeacher
+    editTeacher,
+    getTeacherListPage
 }
