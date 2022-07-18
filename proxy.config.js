@@ -12,7 +12,7 @@ module.exports = {
         //     changeOrigin: true
         // },
         "/api": {
-            target: "http://192.168.1.107:8080", //
+            target: "http://localhost:8080", //
             // target: "http://localhost:8888", //
             // ws: true,
             changeOrigin: true,

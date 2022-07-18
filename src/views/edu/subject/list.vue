@@ -45,7 +45,7 @@ export default {
   methods: {
     getAllSubjectList() {
       subject.getSubjectList().then((response) => {
-        this.data2 = response.data;
+        this.data2 = response.data.dataList;
       });
     },
     filterNode(value, data) {
