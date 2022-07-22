@@ -40,3 +40,17 @@ proxy: {
 ```
 
 # 3.其他
+
+## 3.1 git“放弃所有更改”之后恢复文件，尝试多个软件
+
+```
+vscode中点击git“放弃所有更改”之后恢复文件，尝试多个软件
+手贱点了viscode中git“放弃所有更改”
+软件一：360文件恢复（检索不到自己删掉的那个盘，其他的倒是正常，所以没法用）
+软件二：Recuva文件恢复（ccleaner下面的一个软件）好用
+软件三：Windows File Recovery
+软件四： File Recovery之类的
+软件五： Disk Drill（最终使用软件）
+
+原文链接：https://blog.csdn.net/dangga/article/details/120828531
+```

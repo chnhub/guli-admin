@@ -135,7 +135,7 @@ export default {
         selector: `#${this.tinymceId}`,
         language: this.languageTypeList["zh"],
         language_url: "/tinymce/langs/zh_CN.js",
-        // skin_url: "/tinymce/skins/ui/oxide",
+        skin_url: "/tinymce/skins/ui/oxide",
         height: this.height,
         body_class: "panel-body ",
         object_resizing: false,
@@ -257,6 +257,7 @@ export default {
   right: 4px;
   top: 4px;
   // z-index: 2005;
+  z-index: 1900;
 }
 
 .fullscreen .editor-custom-btn-container {
