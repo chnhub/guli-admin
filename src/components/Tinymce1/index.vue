@@ -26,8 +26,9 @@ import toolbar from "./toolbar";
 import load from "./dynamicLoadScript";
 
 // why use this cdn, detail see https://github.com/PanJiaChen/tinymce-all-in-one
-// const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js'
-const tinymceCDN = "/static/tinymce@4.9.3/tinymce.min.js";
+const tinymceCDN =
+  // "https://cdn.jsdelivr.net/npm/tinymce-all-in-one@4.9.3/tinymce.min.js";
+  "/tinymce/tinymce.min.js";
 
 export default {
   name: "Tinymce",
@@ -77,10 +78,10 @@ export default {
       fullscreen: false,
       languageTypeList: {
         en: "en",
-        zh: "zh_CN",
+        // zh: "zh_CN",
+        zh: "zh-Hans",
         es: "es_MX",
         ja: "ja",
-        zhs: "zh-Hans",
       },
     };
   },
@@ -132,9 +133,9 @@ export default {
       const _this = this;
       window.tinymce.init({
         selector: `#${this.tinymceId}`,
-        // language: this.languageTypeList["zhs"],
-        language: "zh_CN",
-        // language_url: "/static/tinymce@4.9.3/langs/zh_CN.js",
+        language: this.languageTypeList["zh"],
+        language_url: "/tinymce/langs/zh_CN.js",
+        skin_url: "/tinymce/skins/ui/oxide",
         height: this.height,
         body_class: "panel-body ",
         object_resizing: false,
@@ -255,7 +256,8 @@ export default {
   position: absolute;
   right: 4px;
   top: 4px;
-  /*z-index: 2005;*/
+  // z-index: 2005;
+  z-index: 1900;
 }
 
 .fullscreen .editor-custom-btn-container {
@@ -265,5 +267,9 @@ export default {
 
 .editor-upload-btn {
   display: inline-block;
+}
+
+.tinymce-container {
+  // line-height: 29px;
 }
 </style>
